@@ -505,7 +505,7 @@ function render(){
 
   document.getElementById('apps').innerHTML = sections.join('');
   document.getElementById('empty').style.display = list.length ? 'none' : 'block';
-  document.getElementById('resultHint').textContent = kw ? '找到 ' + list.length + ' 个应用' : '共 ' + list.length + ' 个应用 · ' + CATS.length + ' 个分类';
+  document.getElementById('resultHint').textContent = (kw ? '找到 ' + list.length + ' 个应用' : '共 ' + list.length + ' 个应用 · ' + CATS.length + ' 个分类') + (syncNote ? '　·　' + syncNote : '');
 }
 
 function renderFilters(){
@@ -537,6 +537,7 @@ function openApp(id){
   document.getElementById('mSub').textContent = a.tagline + ' · ' + a.version;
   document.getElementById('mDesc').textContent = a.desc;
   const specs = [['最新版本', a.version], ['体积 / 形态', a.size], ['平台', a.platforms.join(' / ')]];
+  if(a.published) specs.push(['最近发布', fmtWhen(a.published)]);
   if(a.pkg) specs.push([(a.id==='bp'||a.id==='reader') ? '说明' : '标识', a.pkg]);
   document.getElementById('mSpec').innerHTML = specs.map(function(s){
     return '<div><dt>' + esc(s[0]) + '</dt><dd>' + esc(s[1]) + '</dd></div>';
@@ -598,10 +599,99 @@ themeBtn.addEventListener('click', function(){
   document.querySelector('meta[name=theme-color]').setAttribute('content', next==='dark' ? '#0e1211' : '#0e9e74');
 });
 
+/* ---------- GitHub 最新 Release 同步 ---------- */
+const GH_KEY = 'jian-apps-gh-v1';
+const GH_TTL = 10 * 60 * 1000;          // 10 分钟内走本地缓存，省掉接口限额
+let syncNote = '';
+
+function ghSlug(url){
+  const m = String(url || '').match(/github\.com\/([^/]+)\/([^/#?]+)/i);
+  return m ? m[1] + '/' + m[2].replace(/\.git$/i, '') : null;
+}
+function fmtSize(bytes){
+  if(!bytes) return '';
+  return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
+}
+function fmtWhen(iso){
+  const t = Date.parse(iso || '');
+  if(!t) return '';
+  const d = new Date(t), pad = n => String(n).padStart(2, '0');
+  return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
+function tidyTag(tag){
+  const t = String(tag || '');
+  const m = t.match(/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-(v\d[\w.+-]*)$/i);
+  return m ? m[1] : t;
+}
+function applyRelease(a, rel){
+  if(!rel || !rel.tag_name) return false;
+  a.version = tidyTag(rel.tag_name);
+  a.published = rel.published_at || '';
+  // 只改写「GitHub Release 附件」形式的下载地址；Docker Hub 等外部地址保持不动
+  if(!a.download || !/\/releases\/download\//.test(String(a.download.url))) return true;
+  const assets = rel.assets || [];
+  const curName = String(a.download.url).split('/').pop() || '';
+  const ext = (curName.match(/\.(apk|fpk|zip|exe|dmg|tar\.gz|7z)$/i) || [])[0] || '';
+  const hit = assets.find(x => x.name === curName)
+    || (ext ? assets.find(x => x.name.toLowerCase().endsWith(ext.toLowerCase())) : null)
+    || assets.find(x => /\.(apk|fpk)$/i.test(x.name));
+  if(hit && hit.browser_download_url){
+    a.download.url = hit.browser_download_url;
+    const s = fmtSize(hit.size);
+    if(s) a.size = s;
+  }
+  return true;
+}
+function applyReleases(releases){
+  let n = 0;
+  Object.keys(releases || {}).forEach(function(id){
+    const a = APPS.find(x => x.id === id);
+    if(a && applyRelease(a, releases[id])) n++;
+  });
+  if(n){
+    syncNote = '已按 GitHub 最新发布更新 ' + n + ' 个';
+    render();
+  }
+  return n;
+}
+function syncFromGitHub(){
+  const targets = APPS.filter(a => !a.private && a.download && ghSlug(a.repo));
+  if(!targets.length || !window.fetch) return;
+
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(GH_KEY) || 'null'); } catch(e){}
+  if(cached && cached.ts && Date.now() - cached.ts < GH_TTL){
+    applyReleases(cached.releases);
+    return;
+  }
+
+  let limited = false;
+  const releases = {};
+  Promise.all(targets.map(function(a){
+    return fetch('https://api.github.com/repos/' + ghSlug(a.repo) + '/releases/latest', {headers:{'Accept':'application/vnd.github+json'}})
+      .then(function(r){
+        if(r.status === 403 || r.status === 429){ limited = true; return null; }
+        if(!r.ok) return null;                       // 私有仓库或无 Release，保持页面内置值
+        return r.json();
+      })
+      .then(function(j){ if(j) releases[a.id] = j; })
+      .catch(function(){});
+  })).then(function(){
+    applyReleases(releases);
+    if(limited){
+      syncNote = 'GitHub 接口限流，暂时显示内置版本';
+      render();
+    }
+    try { localStorage.setItem(GH_KEY, JSON.stringify({ts:Date.now(), releases:releases})); } catch(e){}
+  });
+}
+
 document.getElementById('year').textContent = new Date().getFullYear();
 renderStats(); renderFilters(); render();
+syncFromGitHub();
 const deep = location.hash.match(/^#app-([a-z0-9]+)$/i);
 if(deep && APPS.some(function(x){ return x.id === deep[1]; })) openApp(deep[1]);
 </script>
 </body>
 </html>
+

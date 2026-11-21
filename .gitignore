@@ -1,0 +1,5 @@
+dist/
+.wrangler/
+_dom.html
+_dom.err
+_check.js
