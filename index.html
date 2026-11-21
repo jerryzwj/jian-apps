@@ -309,11 +309,11 @@ const CATS = [
 const APPS = [
   {
     id:'video', cat:'desktop', icon:'video', latest:true,
-    name:'简·影视', tagline:'Windows 桌面端影视聚合播放器，双击即用', version:'v1.0.0', size:'222 MB',
-    platforms:['Windows 10/11 x64','安装包 + 绿色版'],
-    desc:'把 MoonTVPlus 的服务端和界面一起塞进一个 exe：双击就起本地服务并打开窗口，不用装 Node、不用记命令行。内置非凡影视采集源，搜索、详情、播放、电视模式与手机扫码遥控都在。',
-    feats:['安装包装到当前用户目录，不需要管理员权限，装完 3 秒内起窗','另有免安装绿色版单文件（每次启动要解压，冷启动慢，应急用）','首次运行自动建库（SQLite），数据保存在用户目录','关闭窗口即停止本地服务，不留后台进程','端口被占用时自动顺延，局域网内的手机/电视都能连','播放走内置浏览器内核，HLS / m3u8 原样支持','菜单里可一键打开数据目录与运行日志'],
-    download:{label:'下载 EXE', url:'https://github.com/jerryzwj/MoonTVPlus/releases/download/desktop-v1.0.0/jian-video-1.0.0-setup.exe'},
+    name:'简·影视', tagline:'Windows 桌面端影视聚合播放器，解压即用', version:'v1.0.0', size:'≈230 MB',
+    platforms:['Windows 10/11 x64','解压即用','关窗收托盘'],
+    desc:'把 MoonTVPlus 的服务端和界面一起塞进一个桌面应用：双击就起本地服务并打开窗口，不用装 Node、不用记命令行。内置非凡影视采集源，搜索、详情、播放、电视模式与手机扫码遥控都在。',
+    feats:['解压即用：双击 简·影视.exe，约 3 秒起窗；另有单文件绿色版 exe 可选','关窗口只是收进托盘，本地服务和播放会话继续跑；要退出走托盘菜单「退出」','首次运行自动建库（SQLite），数据保存在用户目录，升级不丢','端口被占用时自动顺延，局域网内的手机/电视都能连','播放走内置浏览器内核，HLS / m3u8 原样支持','菜单与托盘里可一键打开数据目录、运行日志，也能把地址丢给浏览器'],
+    download:{label:'下载 ZIP（解压即用）', url:'https://github.com/jerryzwj/MoonTVPlus/releases/download/desktop-v1.0.0/jian-video-1.0.0-win64.zip'},
     repo:'https://github.com/jerryzwj/MoonTVPlus', changelog:'https://github.com/jerryzwj/MoonTVPlus/releases',
     note:'默认账号 admin / admin123；未签名，首次运行可能弹 SmartScreen 提示'
   },
