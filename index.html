@@ -112,6 +112,7 @@ html[data-theme="dark"] .pill[aria-selected="true"] .num{background:rgba(0,0,0,.
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font-size:11px;color:var(--text-2);padding:2.5px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);white-space:nowrap}
 .chip.warn{border-color:color-mix(in srgb, #c98a24 30%, var(--border));color:#a06f14;background:transparent}
+.chip.new{border-color:color-mix(in srgb, var(--green) 35%, var(--border));background:var(--green-soft);color:var(--green);font-weight:600}
 html[data-theme="dark"] .chip.warn{color:#e0b160}
 .card-actions{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:4px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:34px;padding:0 13px;border-radius:10px;font-size:12.5px;font-weight:600;border:1px solid transparent;transition:background .16s,border-color .16s,color .16s;white-space:nowrap}
@@ -300,11 +301,22 @@ const ICONS = {
 
 const CATS = [
   {id:'android', name:'安卓应用', note:'Kotlin + Jetpack Compose 原生，手机与平板直接装 APK'},
+  {id:'desktop', name:'桌面应用', note:'Windows 桌面端，双击即用，自带本地服务'},
   {id:'nas',     name:'飞牛 NAS', note:'飞牛 fnOS 的 FPK 应用与 NAS 上的 Docker 服务'},
   {id:'server',  name:'服务与工具', note:'Cloudflare 上跑的服务、自建面板与脚本'}
 ];
 
 const APPS = [
+  {
+    id:'video', cat:'desktop', icon:'video', latest:true,
+    name:'简·影视', tagline:'Windows 桌面端影视聚合播放器，双击即用', version:'v1.0.0', size:'222 MB',
+    platforms:['Windows 10/11 x64','安装包 + 绿色版'],
+    desc:'把 MoonTVPlus 的服务端和界面一起塞进一个 exe：双击就起本地服务并打开窗口，不用装 Node、不用记命令行。内置非凡影视采集源，搜索、详情、播放、电视模式与手机扫码遥控都在。',
+    feats:['安装包装到当前用户目录，不需要管理员权限，装完 3 秒内起窗','另有免安装绿色版单文件（每次启动要解压，冷启动慢，应急用）','首次运行自动建库（SQLite），数据保存在用户目录','关闭窗口即停止本地服务，不留后台进程','端口被占用时自动顺延，局域网内的手机/电视都能连','播放走内置浏览器内核，HLS / m3u8 原样支持','菜单里可一键打开数据目录与运行日志'],
+    download:{label:'下载 EXE', url:'https://github.com/jerryzwj/MoonTVPlus/releases/download/desktop-v1.0.0/jian-video-1.0.0-setup.exe'},
+    repo:'https://github.com/jerryzwj/MoonTVPlus', changelog:'https://github.com/jerryzwj/MoonTVPlus/releases',
+    note:'默认账号 admin / admin123；未签名，首次运行可能弹 SmartScreen 提示'
+  },
   {
     id:'catbug', cat:'android', icon:'bug',
     name:'简·猫抓虫', tagline:'给猫玩的压虫子小游戏', version:'v1.2.0', size:'0.6 MB',
@@ -457,7 +469,8 @@ function iconBox(key){
 }
 
 function cardHTML(a){
-  const chips = a.platforms.map(p => '<span class="chip">' + esc(p) + '</span>').join('')
+  const chips = (a.latest ? '<span class="chip new">最新</span>' : '')
+    + a.platforms.map(p => '<span class="chip">' + esc(p) + '</span>').join('')
     + (a.private ? '<span class="chip warn">私有 · 不公开</span>' : '');
   const primary = a.download
     ? '<a class="btn btn-primary" href="' + esc(a.download.url) + '" target="_blank" rel="noopener" data-stop>' + ICON_DL + esc(a.download.label) + '</a>'
