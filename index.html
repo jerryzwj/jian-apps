@@ -13,38 +13,21 @@
 <link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
 <style>
-/* ===== 设计变量 ===== */
 :root{
-  --green:#0e9e74;
-  --green-deep:#0a7a59;
-  --green-soft:#e6f5ef;
-  --bg:#f7f8f6;
-  --surface:#ffffff;
-  --surface-2:#f1f3f0;
-  --border:#e3e7e2;
-  --border-strong:#d2d9d1;
-  --text:#141a17;
-  --text-2:#54605a;
-  --text-3:#8a958f;
+  --green:#0e9e74; --green-deep:#0a7a59; --green-soft:#e6f5ef;
+  --bg:#f7f8f6; --surface:#ffffff; --surface-2:#f1f3f0;
+  --border:#e3e7e2; --border-strong:#d2d9d1;
+  --text:#141a17; --text-2:#54605a; --text-3:#8a958f;
   --shadow:0 1px 2px rgba(16,32,24,.04);
-  --radius:16px;
-  --radius-lg:22px;
-  --maxw:1160px;
+  --radius-lg:22px; --maxw:1160px;
   --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
   --sans:"Noto Sans SC","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
 }
 html[data-theme="dark"]{
-  --green:#45d6a6;
-  --green-deep:#2fae85;
-  --green-soft:#132420;
-  --bg:#0e1211;
-  --surface:#161b19;
-  --surface-2:#1d2421;
-  --border:#252d29;
-  --border-strong:#33403a;
-  --text:#e9efec;
-  --text-2:#a3b0aa;
-  --text-3:#79867f;
+  --green:#45d6a6; --green-deep:#2fae85; --green-soft:#132420;
+  --bg:#0e1211; --surface:#161b19; --surface-2:#1d2421;
+  --border:#252d29; --border-strong:#33403a;
+  --text:#e9efec; --text-2:#a3b0aa; --text-3:#79867f;
   --shadow:0 1px 2px rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
@@ -52,64 +35,36 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
   font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;
-  background-image:
-    radial-gradient(circle at 12% -6%, rgba(14,158,116,.10), transparent 42%),
-    radial-gradient(circle at 92% 4%, rgba(14,158,116,.07), transparent 36%);
+  background-image:radial-gradient(circle at 12% -6%, rgba(14,158,116,.10), transparent 42%),radial-gradient(circle at 92% 4%, rgba(14,158,116,.07), transparent 36%);
   background-repeat:no-repeat;
 }
 html[data-theme="dark"] body{
-  background-image:
-    radial-gradient(circle at 12% -6%, rgba(69,214,166,.10), transparent 42%),
-    radial-gradient(circle at 92% 4%, rgba(69,214,166,.06), transparent 36%);
+  background-image:radial-gradient(circle at 12% -6%, rgba(69,214,166,.10), transparent 42%),radial-gradient(circle at 92% 4%, rgba(69,214,166,.06), transparent 36%);
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;cursor:pointer}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
 
-/* ===== 顶栏 ===== */
-.site-header{
-  position:sticky;top:0;z-index:40;
-  background:color-mix(in srgb, var(--bg) 84%, transparent);
-  backdrop-filter:saturate(160%) blur(14px);
-  border-bottom:1px solid var(--border);
-}
+.site-header{position:sticky;top:0;z-index:40;background:color-mix(in srgb, var(--bg) 84%, transparent);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--border)}
 .hdr{display:flex;align-items:center;gap:14px;height:64px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:17px;letter-spacing:.2px}
-.brand-mark{
-  width:30px;height:30px;border-radius:9px;background:var(--green);
-  display:grid;place-items:center;flex:none;
-}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:var(--green);display:grid;place-items:center;flex:none}
 .brand-mark svg{width:18px;height:18px}
 .brand small{display:block;font-size:10.5px;font-weight:500;color:var(--text-3);letter-spacing:.14em;line-height:1.1}
 .hdr-nav{margin-left:auto;display:flex;align-items:center;gap:4px}
-.hdr-nav a{
-  padding:7px 12px;border-radius:999px;font-size:13.5px;color:var(--text-2);font-weight:500;
-  transition:background .16s,color .16s;
-}
+.hdr-nav a{padding:7px 12px;border-radius:999px;font-size:13.5px;color:var(--text-2);font-weight:500;transition:background .16s,color .16s}
 .hdr-nav a:hover{background:var(--surface-2);color:var(--text)}
-.icon-btn{
-  width:36px;height:36px;border-radius:11px;border:1px solid var(--border);
-  background:var(--surface);display:grid;place-items:center;color:var(--text-2);
-  transition:border-color .16s,color .16s;
-}
+.icon-btn{width:36px;height:36px;border-radius:11px;border:1px solid var(--border);background:var(--surface);display:grid;place-items:center;color:var(--text-2);transition:border-color .16s,color .16s}
 .icon-btn:hover{border-color:var(--border-strong);color:var(--text)}
 .icon-btn svg{width:17px;height:17px}
 .theme-sun{display:none}
 html[data-theme="dark"] .theme-sun{display:block}
 html[data-theme="dark"] .theme-moon{display:none}
 
-/* ===== Hero ===== */
 .hero{padding-top:64px;padding-bottom:34px}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);
-  font-weight:700;margin-bottom:16px;
-}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:16px}
 .eyebrow::before{content:"";width:22px;height:2px;background:var(--green);border-radius:2px}
-.hero h1{
-  margin:0 0 14px;font-size:clamp(34px,5.4vw,54px);line-height:1.12;
-  letter-spacing:-.02em;font-weight:900;
-}
+.hero h1{margin:0 0 14px;font-size:clamp(34px,5.4vw,54px);line-height:1.12;letter-spacing:-.02em;font-weight:900}
 .hero h1 em{font-style:normal;color:var(--green)}
 .hero p.lead{max-width:640px;margin:0;color:var(--text-2);font-size:16px}
 .hero-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:26px}
@@ -118,45 +73,23 @@ html[data-theme="dark"] .theme-moon{display:none}
 .stat span{font-size:12.5px;color:var(--text-3)}
 .search{margin-top:30px;max-width:520px;position:relative}
 .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--text-3)}
-.search input{
-  width:100%;height:48px;padding:0 16px 0 44px;border-radius:14px;
-  border:1px solid var(--border);background:var(--surface);color:var(--text);
-  font:inherit;font-size:14.5px;outline:none;
-  transition:border-color .16s;
-}
+.search input{width:100%;height:48px;padding:0 16px 0 44px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:14.5px;outline:none;transition:border-color .16s}
 .search input::placeholder{color:var(--text-3)}
 .search input:focus{border-color:var(--green)}
 
-/* ===== 过滤栏 ===== */
-.filter-bar{
-  position:sticky;top:64px;z-index:30;padding:14px 0 12px;margin-bottom:8px;
-  background:color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter:saturate(150%) blur(12px);
-  border-bottom:1px solid transparent;
-}
+.filter-bar{position:sticky;top:64px;z-index:30;padding:14px 0 12px;margin-bottom:8px;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent}
 .filter-bar.stuck{border-bottom-color:var(--border)}
 .filters{display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
 .filters::-webkit-scrollbar{display:none}
-.pill{
-  flex:none;display:inline-flex;align-items:center;gap:7px;
-  height:36px;padding:0 15px;border-radius:999px;
-  border:1px solid var(--border);background:var(--surface);
-  font-size:13.5px;font-weight:500;color:var(--text-2);
-  transition:border-color .16s,background .16s,color .16s;
-  white-space:nowrap;
-}
+.pill{flex:none;display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 15px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-size:13.5px;font-weight:500;color:var(--text-2);transition:border-color .16s,background .16s,color .16s;white-space:nowrap}
 .pill:hover{border-color:var(--border-strong);color:var(--text)}
 .pill[aria-selected="true"]{background:var(--green);border-color:var(--green);color:#fff}
 html[data-theme="dark"] .pill[aria-selected="true"]{color:#08221b}
-.pill .num{
-  font-size:11px;font-weight:700;padding:1px 6px;border-radius:6px;
-  background:var(--surface-2);color:var(--text-3);
-}
+.pill .num{font-size:11px;font-weight:700;padding:1px 6px;border-radius:6px;background:var(--surface-2);color:var(--text-3)}
 .pill[aria-selected="true"] .num{background:rgba(255,255,255,.22);color:#fff}
 html[data-theme="dark"] .pill[aria-selected="true"] .num{background:rgba(0,0,0,.18);color:#08221b}
 .result-hint{display:block;text-align:right;margin-top:8px;font-size:12.5px;color:var(--text-3);white-space:nowrap}
 
-/* ===== 分类区 ===== */
 .cat-section{padding:26px 0 4px}
 .cat-head{display:flex;align-items:flex-end;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .cat-head h2{margin:0;font-size:19px;font-weight:900;letter-spacing:-.01em}
@@ -164,50 +97,24 @@ html[data-theme="dark"] .pill[aria-selected="true"] .num{background:rgba(0,0,0,.
 .cat-head .rule{flex:1;height:1px;background:var(--border);margin-bottom:9px;min-width:24px}
 .cat-count{font-size:11.5px;color:var(--text-3);font-variant-numeric:tabular-nums}
 
-/* ===== 卡片 ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px}
-.card{
-  position:relative;display:flex;flex-direction:column;gap:12px;
-  padding:18px 18px 15px;border-radius:var(--radius-lg);
-  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
-  transition:border-color .18s,transform .18s,background .18s;
-  cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit;
-}
+.card{position:relative;display:flex;flex-direction:column;gap:12px;padding:18px 18px 15px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);transition:border-color .18s,transform .18s,background .18s;cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit}
 .card:hover{border-color:color-mix(in srgb, var(--green) 42%, var(--border));transform:translateY(-2px)}
 .card:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .card-top{display:flex;align-items:flex-start;gap:12px}
-.app-icon{
-  width:44px;height:44px;border-radius:12px;background:var(--green);
-  display:grid;place-items:center;flex:none;
-}
+.app-icon{width:44px;height:44px;border-radius:12px;background:var(--green);display:grid;place-items:center;flex:none}
 .app-icon svg{width:23px;height:23px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .card-title{min-width:0;flex:1}
 .card-title h3{margin:0;font-size:15.5px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
 .card-title .tagline{margin:3px 0 0;font-size:12.5px;color:var(--text-3);line-height:1.5}
-.ver{
-  flex:none;font-size:11px;font-weight:600;padding:2.5px 7px;border-radius:7px;
-  background:var(--green-soft);color:var(--green);font-family:var(--mono);
-  align-self:flex-start;
-}
-.card-desc{
-  margin:0;font-size:13px;color:var(--text-2);line-height:1.7;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
+.ver{flex:none;font-size:11px;font-weight:600;padding:2.5px 7px;border-radius:7px;background:var(--green-soft);color:var(--green);font-family:var(--mono);align-self:flex-start}
+.card-desc{margin:0;font-size:13px;color:var(--text-2);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{
-  font-size:11px;color:var(--text-2);padding:2.5px 8px;border-radius:6px;
-  border:1px solid var(--border);background:var(--surface-2);white-space:nowrap;
-}
+.chip{font-size:11px;color:var(--text-2);padding:2.5px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);white-space:nowrap}
 .chip.warn{border-color:color-mix(in srgb, #c98a24 30%, var(--border));color:#a06f14;background:transparent}
 html[data-theme="dark"] .chip.warn{color:#e0b160}
 .card-actions{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:4px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  height:34px;padding:0 13px;border-radius:10px;
-  font-size:12.5px;font-weight:600;border:1px solid transparent;
-  transition:background .16s,border-color .16s,color .16s;
-  white-space:nowrap;
-}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:34px;padding:0 13px;border-radius:10px;font-size:12.5px;font-weight:600;border:1px solid transparent;transition:background .16s,border-color .16s,color .16s;white-space:nowrap}
 .btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn-primary{background:var(--green);color:#fff}
 html[data-theme="dark"] .btn-primary{color:#08221b}
@@ -215,39 +122,23 @@ html[data-theme="dark"] .btn-primary{color:#08221b}
 html[data-theme="dark"] .btn-primary:hover{background:#5ee7b9}
 .btn-ghost{border-color:var(--border);color:var(--text-2);background:transparent}
 .btn-ghost:hover{border-color:var(--border-strong);color:var(--text)}
-.btn-muted{color:var(--text-3);font-size:12px;padding:0}
 .more{margin-left:auto;font-size:11.5px;color:var(--text-3);display:inline-flex;align-items:center;gap:3px}
 .card:hover .more{color:var(--green)}
 
-/* ===== 空状态 ===== */
-.empty{
-  padding:70px 0 90px;text-align:center;color:var(--text-3);display:none;
-}
+.empty{padding:70px 0 90px;text-align:center;color:var(--text-3);display:none}
 .empty svg{width:34px;height:34px;stroke:var(--text-3);fill:none;stroke-width:1.6;margin-bottom:12px}
 .empty p{margin:0;font-size:13.5px}
 
-/* ===== 详情弹窗 ===== */
-.modal-back{
-  position:fixed;inset:0;z-index:60;background:rgba(10,18,15,.44);
-  backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:18px;
-}
+.modal-back{position:fixed;inset:0;z-index:60;background:rgba(10,18,15,.44);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:18px}
 .modal-back.open{display:flex}
-.modal{
-  width:min(680px,100%);max-height:min(86vh,760px);overflow:auto;
-  background:var(--surface);border:1px solid var(--border);border-radius:24px;
-  padding:26px 26px 22px;box-shadow:0 24px 60px rgba(6,16,12,.22);
-  animation:pop .18s ease-out;
-}
+.modal{width:min(680px,100%);max-height:min(86vh,760px);overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:26px 26px 22px;box-shadow:0 24px 60px rgba(6,16,12,.22);animation:pop .18s ease-out}
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
 .modal-head{display:flex;gap:14px;align-items:flex-start}
 .modal-head .app-icon{width:54px;height:54px;border-radius:14px}
 .modal-head .app-icon svg{width:28px;height:28px}
 .modal-head h3{margin:0;font-size:21px;font-weight:900;letter-spacing:-.01em}
 .modal-head .sub{margin:4px 0 0;font-size:13px;color:var(--text-3)}
-.modal-close{
-  margin-left:auto;width:32px;height:32px;border-radius:9px;flex:none;
-  border:1px solid var(--border);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);
-}
+.modal-close{margin-left:auto;width:32px;height:32px;border-radius:9px;flex:none;border:1px solid var(--border);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
 .modal-close:hover{color:var(--text);border-color:var(--border-strong)}
 .modal-close svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
 .modal-body{margin-top:20px}
@@ -259,15 +150,11 @@ html[data-theme="dark"] .btn-primary:hover{background:#5ee7b9}
 .feats-title{font-size:12px;font-weight:700;color:var(--text-3);letter-spacing:.1em;margin:0 0 10px}
 .feats{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:7px}
 .feats li{position:relative;padding-left:22px;font-size:13.5px;color:var(--text-2);line-height:1.65}
-.feats li::before{
-  content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;
-  border-radius:3px;background:color-mix(in srgb, var(--green) 75%, #fff);
-}
+.feats li::before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;border-radius:3px;background:color-mix(in srgb, var(--green) 75%, #fff)}
 html[data-theme="dark"] .feats li::before{background:color-mix(in srgb, var(--green) 70%, #000)}
-.modal-actions{display:flex;flex-wrap:wrap;gap:9px;padding-top:4px;border-top:1px solid var(--border);margin-top:4px;padding-top:18px}
+.modal-actions{display:flex;flex-wrap:wrap;gap:9px;border-top:1px solid var(--border);margin-top:4px;padding-top:18px}
 .modal-note{margin:14px 0 0;font-size:12px;color:var(--text-3)}
 
-/* ===== 页脚 ===== */
 footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px}
 .foot-grid{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start}
 .foot-brand{display:flex;align-items:center;gap:10px;font-weight:800}
@@ -275,15 +162,11 @@ footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px
 .foot-brand .brand-mark svg{width:16px;height:16px}
 .foot-note{margin:10px 0 0;font-size:12.5px;color:var(--text-3);line-height:1.7;max-width:360px}
 .foot-links{display:flex;flex-wrap:wrap;gap:6px}
-.foot-links a{
-  font-size:12.5px;color:var(--text-2);padding:6px 11px;border-radius:9px;
-  border:1px solid var(--border);background:var(--surface);
-}
+.foot-links a{font-size:12.5px;color:var(--text-2);padding:6px 11px;border-radius:9px;border:1px solid var(--border);background:var(--surface)}
 .foot-links a:hover{border-color:var(--border-strong);color:var(--text)}
 .copy{margin-top:26px;font-size:11.5px;color:var(--text-3);display:flex;gap:12px;flex-wrap:wrap}
 .copy span{opacity:.85}
 
-/* ===== 响应式 ===== */
 @media (max-width:760px){
   .hero{padding-top:40px;padding-bottom:26px}
   .hero-meta{gap:16px}
@@ -302,9 +185,7 @@ footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px
   <div class="wrap hdr">
     <a class="brand" href="#top" aria-label="简·应用站 首页">
       <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 8h14M5 13h9M5 18h6"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 13h9M5 18h6"/></svg>
       </span>
       <span>简·应用站<small>WENJUN.ORG</small></span>
     </a>
@@ -359,9 +240,7 @@ footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px
     <div class="foot-grid">
       <div>
         <div class="foot-brand">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 13h9M5 18h6"/></svg>
-          </span>
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14M5 13h9M5 18h6"/></svg></span>
           简·应用站
         </div>
         <p class="foot-note">张文军（Win）的个人应用发布页。应用均为自用工具，按需自取；下载即表示你了解并自行承担安装风险。</p>
@@ -379,7 +258,6 @@ footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px
   </div>
 </footer>
 
-<!-- 详情弹窗 -->
 <div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal" id="modal">
     <div class="modal-head">
@@ -388,9 +266,7 @@ footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px
         <h3 id="mTitle"></h3>
         <p class="sub" id="mSub"></p>
       </div>
-      <button class="modal-close" id="mClose" type="button" aria-label="关闭">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
+      <button class="modal-close" id="mClose" type="button" aria-label="关闭"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="modal-body">
       <p class="desc" id="mDesc"></p>
@@ -404,7 +280,6 @@ footer.sf{margin-top:56px;border-top:1px solid var(--border);padding:34px 0 42px
 </div>
 
 <script>
-/* ===== 图标（扁平绿底 + 白色粗描边，无渐变无投影） ===== */
 const ICONS = {
   bug:'<circle cx="12" cy="13" r="5"/><path d="M12 8V5M8.5 9.5 6 7M15.5 9.5 18 7M7 13H3.5M20.5 13H17M8.2 16.5 5 18.6M15.8 16.5 19 18.6"/><path d="M10 8.6c1-1 3-1 4 0"/>',
   tv:'<rect x="3" y="5" width="18" height="12" rx="3"/><path d="M9 21h6M12 17v4"/><path d="M9.8 9.2v3.6l3-1.8z" fill="none"/>',
@@ -423,7 +298,6 @@ const ICONS = {
   box:'<path d="M12 3.8 20 8v8L12 20.2 4 16V8z"/><path d="M4 8l8 4.2 8-4.2M12 12.2v8"/>'
 };
 
-/* ===== 应用数据（改这里就行：新增一个对象即多一张卡片） ===== */
 const CATS = [
   {id:'android', name:'安卓应用', note:'Kotlin + Jetpack Compose 原生，手机与平板直接装 APK'},
   {id:'nas',     name:'飞牛 NAS', note:'飞牛 fnOS 的 FPK 应用与 NAS 上的 Docker 服务'},
@@ -436,15 +310,9 @@ const APPS = [
     name:'简·猫抓虫', tagline:'给猫玩的压虫子小游戏', version:'v1.2.0', size:'0.6 MB',
     platforms:['Android 平板','离线'],
     desc:'白底上虫子从屏幕一边爬到另一边，猫爪按到就「啪」地压扁，一只一分。纯 Canvas 绘制、无第三方依赖，老平板也跑得动。',
-    feats:['支持多指同时按，判定半径约 22dp，两只爪子一起拍也不漏',
-      '5 种虫子：甲虫、蟑螂、蜘蛛、飞蛾、蜈蚣，速度与步态各不相同',
-      '偶尔出现「胖虫」，一只 3 分',
-      '压扁动画、碎屑飞溅、涟漪与实时合成的「咔嚓」音效',
-      '沉浸式全屏 + 常亮，三指长按 1.5 秒呼出设置（猫爪碰不出这个手势）',
-      '内置 GitHub Release 检查更新'],
+    feats:['支持多指同时按，判定半径约 22dp，两只爪子一起拍也不漏','5 种虫子：甲虫、蟑螂、蜘蛛、飞蛾、蜈蚣，速度与步态各不相同','偶尔出现「胖虫」，一只 3 分','压扁动画、碎屑飞溅、涟漪与实时合成的「咔嚓」音效','沉浸式全屏 + 常亮，三指长按 1.5 秒呼出设置（猫爪碰不出这个手势）','内置 GitHub Release 检查更新'],
     download:{label:'下载 APK', url:'https://github.com/jerryzwj/jian-catbug/releases/download/v1.2.0/catbug-v1.2.0.apk'},
-    repo:'https://github.com/jerryzwj/jian-catbug',
-    changelog:'https://github.com/jerryzwj/jian-catbug/releases',
+    repo:'https://github.com/jerryzwj/jian-catbug', changelog:'https://github.com/jerryzwj/jian-catbug/releases',
     pkg:'com.jerryzwj.catbug'
   },
   {
@@ -452,15 +320,9 @@ const APPS = [
     name:'简·TV播放器', tagline:'电视上的影视聚合播放器', version:'v1.0.44', size:'4.2 MB',
     platforms:['Android TV','遥控器适配'],
     desc:'内置 10 个逐条实测可用的采集源，开机静默拉在线清单，后续换源不必再发版；封面、剧集简介、翻页反馈按电视遥控器的习惯做。',
-    feats:['内置合集优先、在线清单兜底：APK 内的源永远排最前，新源只追加不顶替',
-      '在线清单走 gh-proxy / ghfast / jsDelivr / raw 四条线路，全挂就用编译的那份',
-      '远程源需在设置页连点「当前版本」5 次才开启，与内置源互不影响',
-      '剧集页封面、标题两行、剧情简介（年份·地区·语言·评分 / 主演 / 展开全文）',
-      '封面内存 + 磁盘两层缓存，磁盘上限 300MB',
-      '上滑加载有反馈，到底了明说「共 N 部」，失败可就地重试'],
+    feats:['内置合集优先、在线清单兜底：APK 内的源永远排最前，新源只追加不顶替','在线清单走 gh-proxy / ghfast / jsDelivr / raw 四条线路，全挂就用编译的那份','远程源需在设置页连点「当前版本」5 次才开启，与内置源互不影响','剧集页封面、标题两行、剧情简介（年份·地区·语言·评分 / 主演 / 展开全文）','封面内存 + 磁盘两层缓存，磁盘上限 300MB','上滑加载有反馈，到底了明说「共 N 部」，失败可就地重试'],
     download:{label:'下载 APK', url:'https://github.com/jerryzwj/video-collector-tv/releases/download/tv-v1.0.44/video-collector-androidtv-v1.0.44.apk'},
-    repo:'https://github.com/jerryzwj/video-collector-tv',
-    changelog:'https://github.com/jerryzwj/video-collector-tv/releases',
+    repo:'https://github.com/jerryzwj/video-collector-tv', changelog:'https://github.com/jerryzwj/video-collector-tv/releases',
     pkg:'versionCode 45'
   },
   {
@@ -468,12 +330,7 @@ const APPS = [
     name:'简·笔记本', tagline:'随手的个人笔记，网页与安卓共用一套数据', version:'v3.4', size:'1.5 MB',
     platforms:['Android','Web / PWA'],
     desc:'一个 Cloudflare Worker 同时提供网页和 API，数据落在 Upstash Redis。离线下照样能写，联网后自动补同步。',
-    feats:['新建 / 编辑 / 删除 / 回收站，超过 30 天自动清理',
-      '自动保存（450ms 防抖），离线继续写、联网补同步',
-      'Markdown 预览与格式化工具栏，默认就是预览态',
-      '单条笔记生成免密只读分享链接，可随时取消',
-      '单篇导出为自包含 HTML，全部导出 / 导入 JSON',
-      '标题 + 正文搜索、标签筛选、置顶，浅色米白纸底 + 深色石墨双主题'],
+    feats:['新建 / 编辑 / 删除 / 回收站，超过 30 天自动清理','自动保存（450ms 防抖），离线继续写、联网补同步','Markdown 预览与格式化工具栏，默认就是预览态','单条笔记生成免密只读分享链接，可随时取消','单篇导出为自包含 HTML，全部导出 / 导入 JSON','标题 + 正文搜索、标签筛选、置顶，浅色米白纸底 + 深色石墨双主题'],
     download:{label:'下载 APK', url:'https://github.com/jerryzwj/notes-app/releases/download/v3.4/notes-native-3.4.apk'},
     repo:'https://github.com/jerryzwj/notes-app',
     live:{label:'打开网页版', url:'https://note.wenjun.eu.org'},
@@ -484,15 +341,9 @@ const APPS = [
     name:'简·血压记录', tagline:'血压 · 心率 · 吃药打卡', version:'v1.0.1', size:'6.1 MB',
     platforms:['Android','数据存本机'],
     desc:'Kotlin + Jetpack Compose 原生重写，替代早前的 WebView 版本。数据保存在本机，可用 WebDAV 自动备份到坚果云、Nextcloud。',
-    feats:['记录高压 / 低压 / 心率，一天多次、可加备注与时段',
-      '吃药打卡与常用药品管理，取消打卡有二次确认',
-      '7 / 30 / 90 天趋势折线，超标参考线与点选显值',
-      '桌面小部件显示今日服药状态：已服绿色、未服红色',
-      '导出 TXT 到下载目录，WebDAV 自动备份与恢复',
-      '长按快捷方式直达录入弹窗，内置 Release 更新检测'],
+    feats:['记录高压 / 低压 / 心率，一天多次、可加备注与时段','吃药打卡与常用药品管理，取消打卡有二次确认','7 / 30 / 90 天趋势折线，超标参考线与点选显值','桌面小部件显示今日服药状态：已服绿色、未服红色','导出 TXT 到下载目录，WebDAV 自动备份与恢复','长按快捷方式直达录入弹窗，内置 Release 更新检测'],
     download:{label:'下载 APK', url:'https://github.com/jerryzwj/blood-pressure-app/releases/download/v1.0.1/blood-pressure-v1.0.1.apk'},
-    repo:'https://github.com/jerryzwj/blood-pressure-app',
-    changelog:'https://github.com/jerryzwj/blood-pressure-app/releases',
+    repo:'https://github.com/jerryzwj/blood-pressure-app', changelog:'https://github.com/jerryzwj/blood-pressure-app/releases',
     pkg:'调试签名，覆盖安装前先卸载旧版'
   },
   {
@@ -500,12 +351,7 @@ const APPS = [
     name:'简·阅读', tagline:'本地与在线都能读的小说阅读器', version:'v1.0.0', size:'6.5 MB',
     platforms:['Android 8.0+'],
     desc:'原生小说阅读器：本地导入 TXT / EPUB 自动分章，也能挂苹果 CMS 之列的采集接口当书源在线阅读。个人自用，源码暂不公开。',
-    feats:['本地导入 TXT / EPUB，自动分章并缓存',
-      '上下滚动阅读，记录章节与滚动位置',
-      '字号 13–30sp、行距 1.3–2.4、边距 12–40 可调，四套背景（米黄 / 纯白 / 护眼绿 / 夜间）',
-      '目录跳转、上一章下一章、书签，读过的章节离线可看',
-      '自定义书源：分类浏览、关键词搜索',
-      '不内置任何第三方站点地址，只添加你有权访问的书源'],
+    feats:['本地导入 TXT / EPUB，自动分章并缓存','上下滚动阅读，记录章节与滚动位置','字号 13–30sp、行距 1.3–2.4、边距 12–40 可调，四套背景（米黄 / 纯白 / 护眼绿 / 夜间）','目录跳转、上一章下一章、书签，读过的章节离线可看','自定义书源：分类浏览、关键词搜索','不内置任何第三方站点地址，只添加你有权访问的书源'],
     private:true,
     note:'仓库为私有，暂未公开下载。需要安装包可以直接找我。',
     pkg:'com.jian.reader'
@@ -515,12 +361,7 @@ const APPS = [
     name:'网口交换机', tagline:'逐口开关网口，把网口桥成一台二层交换机', version:'0.1.1', size:'FPK',
     platforms:['飞牛 fnOS','端口 8768'],
     desc:'fnOS 原生 FPK 应用：逐口开关物理网口，用 Open vSwitch 把网口桥成交换机，实时看每口速率与累计流量。个人 NAS 工具，未公开下载。',
-    feats:['物理网口卡片：链路灯、速率双工、MTU、MAC、PCI、所属桥、1 秒采样速率曲线',
-      '交换机（OVS 桥）：新建 / 挂端口 / 摘端口 / 配桥 IP',
-      '管理口锁定：有默认路由或配了 IP 的口直接 403 拒绝，强制操作进入 60 秒自动回滚',
-      '虚拟机直通网卡只读展示，防止误踢路由器虚拟机下线',
-      '从自建桥移出端口自动回挂管理桥，不留悬空口',
-      'state.json 持久化，重启 6 秒后自动重新套用'],
+    feats:['物理网口卡片：链路灯、速率双工、MTU、MAC、PCI、所属桥、1 秒采样速率曲线','交换机（OVS 桥）：新建 / 挂端口 / 摘端口 / 配桥 IP','管理口锁定：有默认路由或配了 IP 的口直接 403 拒绝，强制操作进入 60 秒自动回滚','虚拟机直通网卡只读展示，防止误踢路由器虚拟机下线','从自建桥移出端口自动回挂管理桥，不留悬空口','state.json 持久化，重启 6 秒后自动重新套用'],
     private:true,
     note:'飞牛 NAS 自用应用，仓库私有。装包需要一个 FPK，需要时联系我。',
     pkg:'FnosSwitch · /vol2/@appcenter'
@@ -530,25 +371,16 @@ const APPS = [
     name:'视频合并', tagline:'批量合并短剧、剧集的多集视频', version:'v0.2.0', size:'FPK',
     platforms:['飞牛 fnOS','FPK'],
     desc:'飞牛 fnOS 原生 FPK 视频合并工具：把一季短剧的几十集按顺序合成一个文件，省得手动拖进剪辑软件。',
-    feats:['原生 FPK，装到 fnOS 应用中心即可用',
-      '批量选择多集视频，按名称顺序合并',
-      '输出落在指定目录，不改动原始文件',
-      'v0.2.0 起改用统一打包流程，升级直接覆盖'],
+    feats:['原生 FPK，装到 fnOS 应用中心即可用','批量选择多集视频，按名称顺序合并','输出落在指定目录，不改动原始文件','v0.2.0 起改用统一打包流程，升级直接覆盖'],
     download:{label:'下载 FPK', url:'https://github.com/jerryzwj/fnos-video-merger/releases/download/v0.2.0/VideoMerger_v0.20.fpk'},
-    repo:'https://github.com/jerryzwj/fnos-video-merger',
-    changelog:'https://github.com/jerryzwj/fnos-video-merger/releases'
+    repo:'https://github.com/jerryzwj/fnos-video-merger', changelog:'https://github.com/jerryzwj/fnos-video-merger/releases'
   },
   {
     id:'m3u8dl', cat:'nas', icon:'dl',
     name:'M3U8DL', tagline:'m3u8 / HLS 视频流下载器', version:'0.1.x', size:'FPK',
     platforms:['飞牛 fnOS x86_64','HTTP API'],
     desc:'fnOS 原生 FPK 应用：把 m3u8 / HLS 流整段拉下来。任务队列、批量粘贴、断点续跑、自定义子目录、请求头透传，完成后可回调 HTTP API。',
-    feats:['任务队列：一次粘一批链接，按序下载',
-      '断点续跑：中断后从断点继续，不重头拉',
-      '自定义子目录，按剧名 / 集数归档',
-      '请求头透传：带 Referer / UA 才能拉的站也能下',
-      '完成后回调 HTTP API，方便接自动化',
-      'x86_64 原生，跑在飞牛 NAS 上'],
+    feats:['任务队列：一次粘一批链接，按序下载','断点续跑：中断后从断点继续，不重头拉','自定义子目录，按剧名 / 集数归档','请求头透传：带 Referer / UA 才能拉的站也能下','完成后回调 HTTP API，方便接自动化','x86_64 原生，跑在飞牛 NAS 上'],
     private:true,
     note:'仓库私有，未公开提供安装包。'
   },
@@ -557,11 +389,7 @@ const APPS = [
     name:'简·SSH', tagline:'浏览器里的 SSH 终端', version:'latest', size:'≈30 MB 镜像',
     platforms:['Docker','amd64 / arm64'],
     desc:'Alpine + ttyd + openssh-client 打的单容器。局域网打开 NAS-IP:7681 就能敲命令，也能挂到自己域名上；手机浏览器同样可用，断线自动重连。',
-    feats:['三种模式：单机直连（ssh）、多主机菜单（menu）、免 sshd 的宿主机 shell（host）',
-      '设了 SSH_PASSWORD 就自动登录，不设则在网页里手填，密码走 sshpass -e 不进命令行',
-      '网页本身可加 HTTP Basic Auth，可选 HTTPS 与反代子路径',
-      '公网暴露只需配 TTYD_USER / TTYD_PASSWORD，其余默认即可',
-      '以 host 网络运行，容器内直连宿主 sshd'],
+    feats:['三种模式：单机直连（ssh）、多主机菜单（menu）、免 sshd 的宿主机 shell（host）','设了 SSH_PASSWORD 就自动登录，不设则在网页里手填，密码走 sshpass -e 不进命令行','网页本身可加 HTTP Basic Auth，可选 HTTPS 与反代子路径','公网暴露只需配 TTYD_USER / TTYD_PASSWORD，其余默认即可','以 host 网络运行，容器内直连宿主 sshd'],
     download:{label:'Docker Hub', url:'https://hub.docker.com/r/hallezwj/jian-ssh'},
     cmd:'docker run -d --name jian-ssh --network host --restart unless-stopped -e MODE=login -e SSH_HOST=127.0.0.1 -e SSH_USER=root -e TTYD_USER=admin -e TTYD_PASSWORD=口令 hallezwj/jian-ssh:latest',
     note:'仓库私有，镜像公开在 Docker Hub。'
@@ -571,12 +399,7 @@ const APPS = [
     name:'TunnelDeck', tagline:'网页两步把内网服务映射到公网 HTTPS', version:'latest', size:'单容器',
     platforms:['Docker','Windows 托盘'],
     desc:'Cloudflare Tunnel 的可视化面板：填一个子域名 + 一个端口，自动生成 cloudflared 配置并热重启，顺手把 CNAME 建好。不用手写 config.yml。',
-    feats:['快速映射：子域名 + 端口两步搞定，自动生成配置并热重启',
-      '自动 DNS：找到所属 Zone，创建 / 更新 CNAME → 隧道 ID',
-      '多连接：一个面板管多条隧道（家里 NAS、公司测试机、临时演示）',
-      '状态可视：读 cloudflared /ready，另有实时日志',
-      '端口自检与端口扫描：扫到 http 服务直接一键映射',
-      '两种装法：NAS 用 Docker 镜像，Windows 用自带 exe，托盘常驻可开机自启'],
+    feats:['快速映射：子域名 + 端口两步搞定，自动生成配置并热重启','自动 DNS：找到所属 Zone，创建 / 更新 CNAME → 隧道 ID','多连接：一个面板管多条隧道（家里 NAS、公司测试机、临时演示）','状态可视：读 cloudflared /ready，另有实时日志','端口自检与端口扫描：扫到 http 服务直接一键映射','两种装法：NAS 用 Docker 镜像，Windows 用自带 exe，托盘常驻可开机自启'],
     download:{label:'Docker Hub', url:'https://hub.docker.com/r/hallezwj/tunnel-deck'},
     repo:'https://github.com/jerryzwj/tunnel-deck',
     cmd:'docker run -d --name tunnel-deck -p 8787:8787 -v ./data:/data --add-host host.docker.internal:host-gateway hallezwj/tunnel-deck:latest'
@@ -586,11 +409,7 @@ const APPS = [
     name:'简·采集源', tagline:'每天自动验证的影视采集源清单', version:'daily', size:'72 个源',
     platforms:['订阅地址','GitHub Actions'],
     desc:'每天抓公开的影视采集接口目录，归一化去重、并发探测连通性后输出 caiji-tvbox 订阅清单，并生成健康报告。简·TV播放器直接吃这份清单。',
-    feats:['三层去重：URL 归一化 → 片名前 60 个的内容指纹 → 失败历史（连续 3 天不通才剔除）',
-      '连通判定：HTTP 200 + 非拦截页 + 能解析出 ≥5 条记录',
-      '同一指纹下保留 https 优先、搜索可用、延迟更低的那个',
-      '同时输出 report.md 健康报告，每天自动跑',
-      '当前库内 99 个源，输出 72 个，今日连通 75'],
+    feats:['三层去重：URL 归一化 → 片名前 60 个的内容指纹 → 失败历史（连续 3 天不通才剔除）','连通判定：HTTP 200 + 非拦截页 + 能解析出 ≥5 条记录','同一指纹下保留 https 优先、搜索可用、延迟更低的那个','同时输出 report.md 健康报告，每天自动跑','当前库内 99 个源，输出 72 个，今日连通 75'],
     download:{label:'订阅地址', url:'https://raw.githubusercontent.com/jerryzwj/tvjson/main/caiji-tvbox'},
     repo:'https://github.com/jerryzwj/tvjson',
     cmd:'https://raw.githubusercontent.com/jerryzwj/tvjson/main/caiji-tvbox'
@@ -600,12 +419,7 @@ const APPS = [
     name:'EdgeOne 同步', tagline:'把 Cloudflare 子域批量映射成加速域名', version:'0.3.x', size:'仅标准库',
     platforms:['Python','GitHub Actions'],
     desc:'把 wenjun.eu.org 下的所有子域批量映射成 zhangwenjun.eu.org 的 EdgeOne 加速域名，源站自动填对应子域。脚本幂等，只依赖 Python 标准库。',
-    feats:['自动按域名反查 ZoneId，写错直接中止，不会误判成全量重建',
-      '幂等：已存在的加速域名跳过，重复跑不报错',
-      '--only / --exclude 先拿一两个子域试水',
-      '--origin-ip 把某子域的源站改成真实 IP，不走 CF 回源',
-      '--cert 批量申请并部署免费证书，--cert-status 随时查状态',
-      'GitHub Actions 定时跑，顺带更新导航页'],
+    feats:['自动按域名反查 ZoneId，写错直接中止，不会误判成全量重建','幂等：已存在的加速域名跳过，重复跑不报错','--only / --exclude 先拿一两个子域试水','--origin-ip 把某子域的源站改成真实 IP，不走 CF 回源','--cert 批量申请并部署免费证书，--cert-status 随时查状态','GitHub Actions 定时跑，顺带更新导航页'],
     private:true,
     note:'仓库私有（含 API 调用逻辑），需要脚本可以直接找我。'
   },
@@ -614,11 +428,7 @@ const APPS = [
     name:'简·视频采集', tagline:'采集源管理 + 分类筛选 + 多选复制', version:'web', size:'单页',
     platforms:['Cloudflare Pages','Web'],
     desc:'跑在 Cloudflare Pages 上的采集配置工具：采集源统一放在 CF 环境变量里，页面负责分类筛选、搜索、多选与一键复制，推 Git 就自动部署。',
-    feats:['采集源由 Cloudflare 环境变量下发，不进仓库',
-      '分类筛选 + 关键词搜索',
-      '多选复制：勾几条源一次性带走',
-      '纯静态页面，Git 推送自动部署',
-      '给简·TV播放器与自建影视服务做源管理'],
+    feats:['采集源由 Cloudflare 环境变量下发，不进仓库','分类筛选 + 关键词搜索','多选复制：勾几条源一次性带走','纯静态页面，Git 推送自动部署','给简·TV播放器与自建影视服务做源管理'],
     private:true,
     note:'个人自用页面，未公开访问地址。'
   },
@@ -627,16 +437,12 @@ const APPS = [
     name:'MoonTVPlus', tagline:'增强版影视聚合播放器', version:'self-host', size:'Next.js',
     platforms:['Docker','Web'],
     desc:'基于 MoonTV v100 二次开发的影视聚合播放器，在原版之上加了外部播放器支持、视频超分、弹幕系统与评论抓取。自己部署，自己用。',
-    feats:['外部播放器支持，桌面端也能接力播',
-      '视频超分、弹幕系统、评论抓取',
-      'Next.js 14 + Tailwind，Docker 一键起',
-      '数据与播放源自己控，适合自建影视站'],
+    feats:['外部播放器支持，桌面端也能接力播','视频超分、弹幕系统、评论抓取','Next.js 14 + Tailwind，Docker 一键起','数据与播放源自己控，适合自建影视站'],
     repo:'https://github.com/jerryzwj/MoonTVPlus',
     pkg:'Next.js 14 · TypeScript'
   }
 ];
 
-/* ===== 渲染 ===== */
 const $ = (s, r=document) => r.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ICON_DL = '<svg viewBox="0 0 24 24"><path d="M12 4v10M8 10.5 12 14.5 16 10.5"/><path d="M5 17.5v1.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1.5"/></svg>';
@@ -646,75 +452,156 @@ const ICON_ARROW = '<svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:
 let activeCat = 'all';
 let keyword = '';
 
-function iconBox(key, cls=''){
-  return `<span class="app-icon ${cls}" aria-hidden="true"><svg viewBox="0 0 24 24">${ICONS[key]||ICONS.box}</svg></span>`;
+function iconBox(key){
+  return '<span class="app-icon" aria-hidden="true"><svg viewBox="0 0 24 24">' + (ICONS[key]||ICONS.box) + '</svg></span>';
 }
 
 function cardHTML(a){
-  const chips = a.platforms.map(p => `<span class="chip">${esc(p)}</span>`).join('')
+  const chips = a.platforms.map(p => '<span class="chip">' + esc(p) + '</span>').join('')
     + (a.private ? '<span class="chip warn">私有 · 不公开</span>' : '');
   const primary = a.download
-    ? `<a class="btn btn-primary" href="${esc(a.download.url)}" target="_blank" rel="noopener" data-stop>${ICON_DL}${esc(a.download.label)}</a>`
-    : `<span class="btn btn-ghost" style="cursor:default;color:var(--text-3)">暂无公开下载</span>`;
+    ? '<a class="btn btn-primary" href="' + esc(a.download.url) + '" target="_blank" rel="noopener" data-stop>' + ICON_DL + esc(a.download.label) + '</a>'
+    : '<span class="btn btn-ghost" style="cursor:default;color:var(--text-3)">暂无公开下载</span>';
   const repo = a.repo
-    ? `<a class="btn btn-ghost" href="${esc(a.repo)}" target="_blank" rel="noopener" data-stop>${ICON_CODE}源码</a>`
+    ? '<a class="btn btn-ghost" href="' + esc(a.repo) + '" target="_blank" rel="noopener" data-stop>' + ICON_CODE + '源码</a>'
     : '';
-  return `
-  <button class="card" type="button" data-id="${a.id}" aria-label="${esc(a.name)} 详情">
-    <div class="card-top">
-      ${iconBox(a.icon)}
-      <div class="card-title">
-        <h3>${esc(a.name)}</h3>
-        <p class="tagline">${esc(a.tagline)}</p>
-      </div>
-      <span class="ver">${esc(a.version)}</span>
-    </div>
-    <p class="card-desc">${esc(a.desc)}</p>
-    <div class="chips">${chips}</div>
-    <div class="card-actions">${primary}${repo}<span class="more">详情${ICON_ARROW}</span></div>
-  </button>`;
+  return '<button class="card" type="button" data-id="' + a.id + '" aria-label="' + esc(a.name) + ' 详情">'
+    + '<div class="card-top">' + iconBox(a.icon)
+    + '<div class="card-title"><h3>' + esc(a.name) + '</h3><p class="tagline">' + esc(a.tagline) + '</p></div>'
+    + '<span class="ver">' + esc(a.version) + '</span></div>'
+    + '<p class="card-desc">' + esc(a.desc) + '</p>'
+    + '<div class="chips">' + chips + '</div>'
+    + '<div class="card-actions">' + primary + repo + '<span class="more">详情' + ICON_ARROW + '</span></div>'
+    + '</button>';
 }
 
 function matches(a, kw){
   if(!kw) return true;
-  const hay = [a.name, a.tagline, a.desc, a.pkg||'', a.version, ...(a.platforms||[]), ...(a.feats||[])].join(' ').toLowerCase();
-  return hay.includes(kw.toLowerCase());
+  const hay = [a.name, a.tagline, a.desc, a.pkg||'', a.version].concat(a.platforms||[], a.feats||[]).join(' ').toLowerCase();
+  return hay.indexOf(kw.toLowerCase()) !== -1;
 }
 
 function render(){
   const kw = keyword.trim();
   const list = APPS.filter(a => (activeCat === 'all' || a.cat === activeCat) && matches(a, kw));
-  const host = $('#apps');
   const sections = [];
 
   if(activeCat === 'all' && !kw){
     CATS.forEach(c => {
       const items = list.filter(a => a.cat === c.id);
       if(!items.length) return;
-      sections.push(`<section class="cat-section" id="cat-${c.id}">
-        <div class="cat-head"><h2>${esc(c.name)}</h2><p>${esc(c.note)}</p><div class="rule"></div><span class="cat-count">${items.length} 个</span></div>
-        <div class="grid">${items.map(cardHTML).join('')}</div>
-      </section>`);
+      sections.push('<section class="cat-section" id="cat-' + c.id + '">'
+        + '<div class="cat-head"><h2>' + esc(c.name) + '</h2><p>' + esc(c.note) + '</p><div class="rule"></div><span class="cat-count">' + items.length + ' 个</span></div>'
+        + '<div class="grid">' + items.map(cardHTML).join('') + '</div></section>');
     });
   } else {
     const cat = CATS.find(c => c.id === activeCat);
-    const items = list;
-    sections.push(`<section class="cat-section">
-      <div class="cat-head"><h2>${cat ? esc(cat.name) : '搜索结果'}</h2><p>${cat ? esc(cat.note) : (kw ? '关键词「' + esc(kw) + '」' : '')}</p><div class="rule"></div><span class="cat-count">${items.length} 个</span></div>
-      <div class="grid">${items.map(cardHTML).join('')}</div>
-    </section>`);
+    const title = cat ? esc(cat.name) : '搜索结果';
+    const note = cat ? esc(cat.note) : (kw ? '关键词「' + esc(kw) + '」' : '');
+    sections.push('<section class="cat-section">'
+      + '<div class="cat-head"><h2>' + title + '</h2><p>' + note + '</p><div class="rule"></div><span class="cat-count">' + list.length + ' 个</span></div>'
+      + '<div class="grid">' + list.map(cardHTML).join('') + '</div></section>');
   }
 
-  host.innerHTML = sections.join('');
-  $('#empty').style.display = list.length ? 'none' : 'block';
-  $('#resultHint').textContent = kw ? `找到 ${list.length} 个应用` : `共 ${list.length} 个应用 · ${CATS.length} 个分类`;
+  document.getElementById('apps').innerHTML = sections.join('');
+  document.getElementById('empty').style.display = list.length ? 'none' : 'block';
+  document.getElementById('resultHint').textContent = kw ? '找到 ' + list.length + ' 个应用' : '共 ' + list.length + ' 个应用 · ' + CATS.length + ' 个分类';
 }
 
 function renderFilters(){
   const counts = {all: APPS.length};
-  CATS.forEach(c => counts[c.id] = APPS.filter(a => a.cat === c.id).length);
-  const items = [{id:'all', name:'全部'}].concat(CATS.map(c => ({id:c.id, name:c.name)));
+  CATS.forEach(c => { counts[c.id] = APPS.filter(a => a.cat === c.id).length; });
+  const items = [{id:'all', name:'全部'}].concat(CATS.map(c => ({id:c.id, name:c.name})));
+  document.getElementById('filters').innerHTML = items.map(it =>
+    '<button class="pill" type="button" role="tab" data-cat="' + it.id + '" aria-selected="' + (activeCat===it.id) + '">'
+    + esc(it.name) + '<span class="num">' + (counts[it.id]||0) + '</span></button>').join('');
 }
+
+function renderStats(){
+  const android = APPS.filter(a => a.cat==='android').length;
+  const downloadable = APPS.filter(a => a.download).length;
+  document.getElementById('heroStats').innerHTML =
+    '<div class="stat"><b>' + APPS.length + '</b><span>个应用</span></div>'
+    + '<div class="stat"><b>' + CATS.length + '</b><span>个分类</span></div>'
+    + '<div class="stat"><b>' + downloadable + '</b><span>个可直接下载</span></div>'
+    + '<div class="stat"><b>' + android + '</b><span>个安卓原生</span></div>';
+}
+
+let lastFocus = null;
+function openApp(id){
+  const a = APPS.find(x => x.id === id);
+  if(!a) return;
+  lastFocus = document.activeElement;
+  document.getElementById('mIcon').innerHTML = '<svg viewBox="0 0 24 24">' + (ICONS[a.icon]||ICONS.box) + '</svg>';
+  document.getElementById('mTitle').textContent = a.name;
+  document.getElementById('mSub').textContent = a.tagline + ' · ' + a.version;
+  document.getElementById('mDesc').textContent = a.desc;
+  const specs = [['最新版本', a.version], ['体积 / 形态', a.size], ['平台', a.platforms.join(' / ')]];
+  if(a.pkg) specs.push([(a.id==='bp'||a.id==='reader') ? '说明' : '标识', a.pkg]);
+  document.getElementById('mSpec').innerHTML = specs.map(function(s){
+    return '<div><dt>' + esc(s[0]) + '</dt><dd>' + esc(s[1]) + '</dd></div>';
+  }).join('');
+  document.getElementById('mFeats').innerHTML = (a.feats||[]).map(f => '<li>' + esc(f) + '</li>').join('');
+  const btns = [];
+  if(a.download) btns.push('<a class="btn btn-primary" href="' + esc(a.download.url) + '" target="_blank" rel="noopener">' + ICON_DL + esc(a.download.label) + '</a>');
+  if(a.live) btns.push('<a class="btn btn-ghost" href="' + esc(a.live.url) + '" target="_blank" rel="noopener">' + esc(a.live.label) + '</a>');
+  if(a.repo) btns.push('<a class="btn btn-ghost" href="' + esc(a.repo) + '" target="_blank" rel="noopener">' + ICON_CODE + '项目地址</a>');
+  if(a.changelog) btns.push('<a class="btn btn-ghost" href="' + esc(a.changelog) + '" target="_blank" rel="noopener">更新日志</a>');
+  if(!btns.length) btns.push('<span class="btn btn-ghost" style="cursor:default;color:var(--text-3)">私有项目 · 暂无公开入口</span>');
+  document.getElementById('mActions').innerHTML = btns.join('');
+  let note = a.note || '';
+  if(a.cmd) note = '命令：' + a.cmd + (note ? '　·　' + note : '');
+  const nEl = document.getElementById('mNote');
+  nEl.textContent = note;
+  nEl.style.display = note ? 'block' : 'none';
+  document.getElementById('modalBack').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('mClose').focus();
+}
+function closeModal(){
+  document.getElementById('modalBack').classList.remove('open');
+  document.body.style.overflow = '';
+  if(lastFocus) lastFocus.focus();
+}
+
+document.addEventListener('click', function(e){
+  if(e.target.closest('[data-stop]')) return;
+  const card = e.target.closest('.card');
+  if(card){ openApp(card.dataset.id); return; }
+  const pill = e.target.closest('.pill');
+  if(pill){
+    activeCat = pill.dataset.cat;
+    renderFilters(); render();
+    window.scrollTo({top: document.getElementById('apps').offsetTop - 118, behavior:'smooth'});
+  }
+});
+document.getElementById('mClose').addEventListener('click', closeModal);
+document.getElementById('modalBack').addEventListener('click', function(e){ if(e.target === e.currentTarget) closeModal(); });
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' && document.getElementById('modalBack').classList.contains('open')) closeModal();
+});
+document.getElementById('q').addEventListener('input', function(e){ keyword = e.target.value; render(); });
+
+const fb = document.getElementById('filterBar');
+window.addEventListener('scroll', function(){
+  fb.classList.toggle('stuck', fb.getBoundingClientRect().top <= 65);
+}, {passive:true});
+
+const themeBtn = document.getElementById('themeBtn');
+const saved = localStorage.getItem('jian-apps-theme');
+if(saved){ document.documentElement.dataset.theme = saved; }
+else if(matchMedia('(prefers-color-scheme: dark)').matches){ document.documentElement.dataset.theme = 'dark'; }
+themeBtn.addEventListener('click', function(){
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('jian-apps-theme', next);
+  document.querySelector('meta[name=theme-color]').setAttribute('content', next==='dark' ? '#0e1211' : '#0e9e74');
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+renderStats(); renderFilters(); render();
+const deep = location.hash.match(/^#app-([a-z0-9]+)$/i);
+if(deep && APPS.some(function(x){ return x.id === deep[1]; })) openApp(deep[1]);
 </script>
 </body>
 </html>
