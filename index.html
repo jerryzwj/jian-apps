@@ -329,11 +329,11 @@ const APPS = [
   },
   {
     id:'tv', cat:'android', icon:'tv',
-    name:'简·TV播放器', tagline:'电视上的影视聚合播放器', version:'v1.0.46', size:'4.2 MB',
+    name:'简·TV播放器', tagline:'电视上的影视聚合播放器', version:'v1.0.47', size:'4.2 MB',
     platforms:['Android TV','遥控器适配'],
-    desc:'内置 10 个逐条实测可用的采集源，开机静默拉在线清单，后续换源不必再发版；采集源页可一键查整张列表——能取到分类才算通过，延迟直接标在每条后面；封面、剧集简介、翻页反馈按电视遥控器的习惯做。',
-    feats:['内置合集优先、在线清单兜底：APK 内的源永远排最前，新源只追加不顶替','采集源页右上「测速」一键查完整张列表：解析 ac=list，能取到分类才算通过，连不上/拿不到分类分开标，结果重启还在','在线清单走 gh-proxy / ghfast / jsDelivr / raw 四条线路，全挂就用编译的那份','远程源需在设置页连点「当前版本」5 次才开启，与内置源互不影响','剧集页封面、标题两行、剧情简介（年份·地区·语言·评分 / 主演 / 展开全文）','封面内存 + 磁盘两层缓存，磁盘上限 300MB；上滑加载有反馈，到底明说「共 N 部」，失败可就地重试'],
-    download:{label:'下载 APK', url:'https://github.com/jerryzwj/video-collector-tv/releases/download/tv-v1.0.46/video-collector-androidtv-v1.0.46.apk'},
+    desc:'内置 10 个逐条实测可用的采集源，开机静默拉在线清单，后续换源不必再发版；采集源页可一键查整张列表——能取到分类才算通过，测完按延迟从低到高重排，延迟直接标在每条后面；封面、剧集简介、翻页反馈按电视遥控器的习惯做。',
+    feats:['内置合集优先、在线清单兜底：APK 内的源永远排最前，新源只追加不顶替','采集源页右上「测速」一键查完整张列表：解析 ac=list，能取到分类才算通过，连不上/拿不到分类分开标','测速完成自动按延迟从低到高排序，失败、无分类、没测过的垫底；结果存本机，重启还在','在线清单走 gh-proxy / ghfast / jsDelivr / raw 四条线路，全挂就用编译的那份','远程源需在设置页连点「当前版本」5 次才开启，与内置源互不影响','剧集页封面、标题两行、剧情简介（年份·地区·语言·评分 / 主演 / 展开全文）；封面两层缓存上限 300MB'],
+    download:{label:'下载 APK', url:'https://github.com/jerryzwj/video-collector-tv/releases/download/tv-v1.0.47/video-collector-androidtv-v1.0.47.apk'},
     repo:'https://github.com/jerryzwj/video-collector-tv', changelog:'https://github.com/jerryzwj/video-collector-tv/releases',
     pkg:'com.jerryzwj.videocollectortv'
   },
