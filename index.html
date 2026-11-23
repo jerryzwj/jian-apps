@@ -437,11 +437,11 @@ const APPS = [
   },
   {
     id:'collector', cat:'server', icon:'video',
-    name:'简·视频采集', tagline:'采集源管理 + 分类筛选 + 多选复制 + 本机下载 + 内置播放器', version:'v1.0.1', size:'单页 / 本机服务',
+    name:'简·视频采集', tagline:'采集源管理 + 分类筛选 + 多选复制 + 本机下载 + 内置播放器', version:'v1.0.2', size:'单页 / 本机服务',
     platforms:['Cloudflare Pages','Windows 本机版'],
-    desc:'同一套界面两个版本：CF Pages 版跑在云端负责远程采集与代理；Windows 本机版由本机直连采集站（不经境外节点）、加密 DNS 解析、多任务下载到本地磁盘，并带新窗口 HLS 播放器。',
-    feats:['采集源统一放 GitHub JSON，改 JSON 不用重新部署','分类筛选 + 关键词搜索 + 多选复制（链接 空格 文件名）','本机版 DoH 加密 DNS：明文 DNS 被劫持时也能拿到干净解析，坏源直接秒判','本机版多任务并行下载，m3u8/直链都能下，合集自动 ffmpeg 合并','点集数新开播放器：播放分享页自动解析出 m3u8，分片 206 透传可拖动进度','CF 版 502 会区分「采集站拒绝 CF 节点 / 网络超时 / 返回不是 JSON」，支持 FALLBACK_PROXY 换出口'],
-    download:{label:'下载 v1.0.1', url:'https://github.com/jerryzwj/video-collector/releases/tag/local-v1.0.1'},
+    desc:'同一套界面两个版本：CF Pages 版跑在云端负责远程采集与代理；Windows 本机版由本机直连采集站（不经境外节点）、DNS 固定一种不切换、多任务下载到本地磁盘，并带新窗口 HLS 播放器。',
+    feats:['采集源统一放 GitHub JSON，改 JSON 不用重新部署','分类筛选 + 关键词搜索 + 多选复制（链接 空格 文件名）','DNS 固定一种：右上角选系统 DNS / 8.8.8.8 / 阿里 / 腾讯，选定后运行时不切换，失败直接报错','本机版多任务并行下载，m3u8/直链都能下，合集自动 ffmpeg 合并','点集数新开播放器：播放分享页自动解析出 m3u8，分片 206 透传可拖动进度','CF 版 502 会区分「采集站拒绝 CF 节点 / 网络超时 / 返回不是 JSON」，支持 FALLBACK_PROXY 换出口'],
+    download:{label:'下载 v1.0.2', url:'https://github.com/jerryzwj/video-collector/releases/tag/local-v1.0.2'},
     repo:'https://github.com/jerryzwj/video-collector',
     private:true,
     note:'仓库私有（含采集源清单），要源码或安装包直接找我。'
