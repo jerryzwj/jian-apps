@@ -296,7 +296,8 @@ const ICONS = {
   sync:'<path d="M4.5 9.5A7.8 7.8 0 0 1 18 7.2"/><path d="M18.4 3.6v3.8h-3.8"/><path d="M19.5 14.5A7.8 7.8 0 0 1 6 16.8"/><path d="M5.6 20.4v-3.8h3.8"/>',
   moon:'<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.6 6.6 0 0 0 10.5 10.5Z"/>',
   video:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M9.8 9.4v5.2l4.4-2.6z" fill="none"/>',
-  box:'<path d="M12 3.8 20 8v8L12 20.2 4 16V8z"/><path d="M4 8l8 4.2 8-4.2M12 12.2v8"/>'
+  box:'<path d="M12 3.8 20 8v8L12 20.2 4 16V8z"/><path d="M4 8l8 4.2 8-4.2M12 12.2v8"/>',
+  nas:'<rect x="5.2" y="3" width="13.6" height="18" rx="2.8"/><path d="M8.4 7.2h7.2M8.4 10.4h7.2"/><circle cx="8.7" cy="15.6" r=".95"/><path d="M12 15.6h4.1"/>'
 };
 
 const CATS = [
@@ -307,6 +308,27 @@ const CATS = [
 ];
 
 const APPS = [
+  {
+    id:'nas-server', cat:'desktop', icon:'nas', latest:true,
+    name:'简·NAS 服务端', tagline:'家庭 NAS 桌面服务端，自带内网穿透与 DDNS', version:'v1.2.5', size:'1.2 GB',
+    platforms:['Windows 10/11 x64','解压即用','端口 6789 / 6799'],
+    desc:'自建 NAS 服务端的去会员化改造版：账号、相册、影音、文件、快速分享全部本地跑，不再校验官方会员。内网穿透用 Cloudflare Tunnel，cloudflared 已内嵌；DDNS 拆成独立功能，填自己的 Token 和域名就能用。',
+    feats:['去会员化：账号、相册、影音、文件、快速分享全部本地可用，界面不再出现「需要会员」','内网穿透内置 cloudflared，界面只填子域名；根域名与凭证都存在本地 json，不填不回显','DDNS 完全独立：自备 Cloudflare Token（Zone:Read + DNS:Edit）+ 完整域名，Account 与 Zone 由 Token 自动反查，可开小云朵代理','隧道状态改以 Cloudflare 侧 health + connections 为准，进程没起但隧道在跑也判正常，不再误报「异常」','Web 界面换成「简·NAS」定制版，服务器列表带「局域网直连」一键跳内网地址','已剔除 483 MB 官方原始 asar 与 344 MB 重复原生模块，3.1 GB 压到 2.2 GB；移除自动更新文件，不会被官方包覆盖'],
+    download:{label:'下载 ZIP（1.2 GB · 解压即用）', url:'https://github.com/jerryzwj/jian-apps/releases/download/nas-v1.2.5/JianNAS-server-v1.2.5-portable.zip'},
+    changelog:'https://github.com/jerryzwj/jian-apps/releases/tag/nas-v1.2.5',
+    note:'解压双击 NasCabOSServer.exe，浏览器开 http://127.0.0.1:6789 建管理员；数据与配置在 %APPDATA%/nascab_os_server，迁移只拷这个目录。手机端用下面「简·NAS」条目里的 APK。'
+  },
+  {
+    id:'jiannas', cat:'android', icon:'nas', latest:true,
+    name:'简·NAS', tagline:'自建 NAS 的手机客户端，局域网 / 公网 / 隧道自动择优', version:'1.2.14+34', size:'144 MB',
+    platforms:['Android arm64','连自建服务端'],
+    desc:'配套上面服务端的安卓客户端。连上以后相册备份、文件浏览、影音播放、快速分享都在手机上操作，连接顺序按局域网优先自动切换。',
+    feats:['连接顺序：局域网 → 公网 IPv4/IPv6 → 隧道域名 → P2P 兜底，哪条通用哪条','修好局域网切换：HTTPS 页面切到内网 http 端口不再 TLS 报错，能真正切过去','User-Agent 固定 ASCII 产品名，中文应用名不会再让请求变成非法 HTTP 头','全链路密码登录，与 Web 端共用同一套账号','图标与文案统一「简·NAS」品牌，扁平绿底圆角图标','同签名自装可覆盖升级；与官方 NasCab 签名不同，装前先卸载官方版'],
+    download:{label:'下载 APK（arm64）', url:'https://github.com/jerryzwj/jian-apps/releases/download/nas-v1.2.5/JianNAS-v7-arm64.apk'},
+    changelog:'https://github.com/jerryzwj/jian-apps/releases/tag/nas-v1.2.5',
+    pkg:'com.nascabos.mobile',
+    note:'源码未公开。添加服务器填 http://<局域网IP>:6789 或隧道域名。'
+  },
   {
     id:'video', cat:'desktop', icon:'video', latest:true,
     name:'简·影视', tagline:'Windows 桌面端影视聚合播放器，解压即用', version:'v1.0.0', size:'≈230 MB',
@@ -329,13 +351,13 @@ const APPS = [
   },
   {
     id:'tv', cat:'android', icon:'tv',
-    name:'简·TV播放器', tagline:'电视上的影视聚合播放器', version:'v1.0.47', size:'4.2 MB',
+    name:'简·TV播放器', tagline:'电视上的影视聚合播放器', version:'v1.0.44', size:'4.2 MB',
     platforms:['Android TV','遥控器适配'],
-    desc:'内置 10 个逐条实测可用的采集源，开机静默拉在线清单，后续换源不必再发版；采集源页可一键查整张列表——能取到分类才算通过，测完按延迟从低到高重排，延迟直接标在每条后面；封面、剧集简介、翻页反馈按电视遥控器的习惯做。',
-    feats:['内置合集优先、在线清单兜底：APK 内的源永远排最前，新源只追加不顶替','采集源页右上「测速」一键查完整张列表：解析 ac=list，能取到分类才算通过，连不上/拿不到分类分开标','测速完成自动按延迟从低到高排序，失败、无分类、没测过的垫底；结果存本机，重启还在','在线清单走 gh-proxy / ghfast / jsDelivr / raw 四条线路，全挂就用编译的那份','远程源需在设置页连点「当前版本」5 次才开启，与内置源互不影响','剧集页封面、标题两行、剧情简介（年份·地区·语言·评分 / 主演 / 展开全文）；封面两层缓存上限 300MB'],
-    download:{label:'下载 APK', url:'https://github.com/jerryzwj/video-collector-tv/releases/download/tv-v1.0.47/video-collector-androidtv-v1.0.47.apk'},
+    desc:'内置 10 个逐条实测可用的采集源，开机静默拉在线清单，后续换源不必再发版；封面、剧集简介、翻页反馈按电视遥控器的习惯做。',
+    feats:['内置合集优先、在线清单兜底：APK 内的源永远排最前，新源只追加不顶替','在线清单走 gh-proxy / ghfast / jsDelivr / raw 四条线路，全挂就用编译的那份','远程源需在设置页连点「当前版本」5 次才开启，与内置源互不影响','剧集页封面、标题两行、剧情简介（年份·地区·语言·评分 / 主演 / 展开全文）','封面内存 + 磁盘两层缓存，磁盘上限 300MB','上滑加载有反馈，到底了明说「共 N 部」，失败可就地重试'],
+    download:{label:'下载 APK', url:'https://github.com/jerryzwj/video-collector-tv/releases/download/tv-v1.0.44/video-collector-androidtv-v1.0.44.apk'},
     repo:'https://github.com/jerryzwj/video-collector-tv', changelog:'https://github.com/jerryzwj/video-collector-tv/releases',
-    pkg:'com.jerryzwj.videocollectortv'
+    pkg:'versionCode 45'
   },
   {
     id:'notes', cat:'android', icon:'note',
@@ -437,14 +459,12 @@ const APPS = [
   },
   {
     id:'collector', cat:'server', icon:'video',
-    name:'简·视频采集', tagline:'采集源管理 + 分类筛选 + 多选复制 + 本机下载 + 内置播放器', version:'v1.0.3', size:'单页 / 本机服务',
-    platforms:['Cloudflare Pages','Windows 本机版'],
-    desc:'同一套界面两个版本：CF Pages 版跑在云端负责远程采集与代理；Windows 本机版由本机直连采集站（不经境外节点）、DNS 固定一种不切换、自动借用系统代理绕过被墙的源、多任务下载到本地磁盘，并带新窗口 HLS 播放器。',
-    feats:['采集源统一放 GitHub JSON，改 JSON 不用重新部署','分类筛选 + 关键词搜索 + 多选复制（链接 空格 文件名）','DNS 固定一种：右上角选系统 DNS / 8.8.8.8 / 阿里 / 腾讯，选定后运行时不切换','直连优先、代理兜底：国内源直连，被 DNS 屏蔽或 443 重置的源自动借系统代理，并记住该域名走哪条路','本机版多任务并行下载，m3u8/直链都能下，合集自动 ffmpeg 合并','点集数新开播放器：播放分享页自动解析出 m3u8，分片 206 透传可拖动进度'],
-    download:{label:'下载 v1.0.3', url:'https://github.com/jerryzwj/video-collector/releases/tag/local-v1.0.3'},
-    repo:'https://github.com/jerryzwj/video-collector',
+    name:'简·视频采集', tagline:'采集源管理 + 分类筛选 + 多选复制', version:'web', size:'单页',
+    platforms:['Cloudflare Pages','Web'],
+    desc:'跑在 Cloudflare Pages 上的采集配置工具：采集源统一放在 CF 环境变量里，页面负责分类筛选、搜索、多选与一键复制，推 Git 就自动部署。',
+    feats:['采集源由 Cloudflare 环境变量下发，不进仓库','分类筛选 + 关键词搜索','多选复制：勾几条源一次性带走','纯静态页面，Git 推送自动部署','给简·TV播放器与自建影视服务做源管理'],
     private:true,
-    note:'仓库私有（含采集源清单），要源码或安装包直接找我。'
+    note:'个人自用页面，未公开访问地址。'
   },
   {
     id:'moontv', cat:'server', icon:'moon',
