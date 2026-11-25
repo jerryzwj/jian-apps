@@ -342,12 +342,12 @@ const APPS = [
     name:'简·NAS', tagline:'自建家庭 NAS：桌面服务端 + 手机客户端', version:'v1.2.5', size:'服务端 1.2 GB · 客户端 144 MB', sizeFixed:true,
     platforms:['Windows 10/11 x64','Android arm64','Cloudflare Tunnel'],
     desc:'一套自建 NAS 的去会员化改造版：账号、相册、影音、文件、快速分享全部本地跑，不再校验官方会员。桌面服务端内置 cloudflared 做内网穿透、DDNS 拆成独立功能；手机客户端按局域网 → 公网 → 隧道 → P2P 的顺序自动择优连接。',
-    feats:['去会员化：账号、相册、影音、文件、快速分享全部本地可用，不再出现「需要会员」','穿透内置 cloudflared，界面只填子域名；DDNS 自备 Cloudflare Token，Account / Zone 自动反查','隧道状态以 Cloudflare 侧 health + connections 为准，进程没起但隧道在跑也判正常','剔除 483 MB 官方 asar 与 344 MB 重复原生模块，3.1 GB 压到 2.2 GB，不会被官方自动更新覆盖','客户端连接顺序：局域网 → 公网 IPv4/IPv6 → 隧道域名 → P2P 兜底','客户端修好局域网切换与中文 UA 问题，全链路密码登录，与 Web 端共用同一套账号','登录页识别局域网/P2P：从公网进来时给出「局域网直连 10.10.10.x / 192.168.x.x」一键切换','隧道按机器唯一命名（nascab-<机器码>）：多台电脑同时装不串台，子域名被占用只提示换一个','源码公开：github.com/jerryzwj/jian-nas'],
+    feats:['去会员化：账号、相册、影音、文件、快速分享全部本地可用，不再出现「需要会员」','穿透内置 cloudflared，界面只填子域名；DDNS 自备 Cloudflare Token，Account / Zone 自动反查','隧道状态以 Cloudflare 侧 health + connections 为准，进程没起但隧道在跑也判正常','剔除 483 MB 官方 asar 与 344 MB 重复原生模块，3.1 GB 压到 2.2 GB，不会被官方自动更新覆盖','客户端连接顺序：局域网 → 公网 IPv4/IPv6 → 隧道域名 → P2P 兜底','客户端修好局域网切换与中文 UA 问题，全链路密码登录，与 Web 端共用同一套账号'],
     downloads:[
-      {label:'下载服务端', url:'https://github.com/jerryzwj/jian-nas/releases/download/nas-v1.2.7/JianNAS-server-v1.2.5-portable.zip'},
-      {label:'下载客户端', url:'https://github.com/jerryzwj/jian-nas/releases/download/nas-v1.2.7/JianNAS-v7-arm64.apk'}
+      {label:'下载服务端', url:'https://github.com/jerryzwj/jian-apps/releases/download/nas-v1.2.5/JianNAS-server-v1.2.5-portable.zip'},
+      {label:'下载客户端', url:'https://github.com/jerryzwj/jian-apps/releases/download/nas-v1.2.5/JianNAS-v7-arm64.apk'}
     ],
-    changelog:'https://github.com/jerryzwj/jian-nas/releases/tag/nas-v1.2.7',
+    changelog:'https://github.com/jerryzwj/jian-apps/releases/tag/nas-v1.2.5',
     pkg:'服务端端口 6789 / 6799 · 客户端 com.nascabos.mobile',
     note:'服务端解压双击 NasCabOSServer.exe，浏览器开 http://127.0.0.1:6789 建管理员，数据与配置在 %APPDATA%/nascab_os_server，迁移只拷这个目录；客户端添加服务器填 http://<局域网IP>:6789 或隧道域名。'
   },
@@ -452,13 +452,17 @@ const APPS = [
   },
   {
     id:'tunneldeck', cat:'devops', icon:'tunnel',
-    name:'TunnelDeck', tagline:'网页两步把内网服务映射到公网 HTTPS', version:'latest', size:'单容器',
-    platforms:['Docker','Windows 托盘'],
-    desc:'Cloudflare Tunnel 的可视化面板：填一个子域名 + 一个端口，自动生成 cloudflared 配置并热重启，顺手把 CNAME 建好。不用手写 config.yml。',
-    feats:['快速映射：子域名 + 端口两步搞定，自动生成配置并热重启','自动 DNS：找到所属 Zone，创建 / 更新 CNAME → 隧道 ID','多连接：一个面板管多条隧道（家里 NAS、公司测试机、临时演示）','状态可视：读 cloudflared /ready，另有实时日志','端口自检与端口扫描：扫到 http 服务直接一键映射','两种装法：NAS 用 Docker 镜像，Windows 用自带 exe，托盘常驻可开机自启'],
-    download:{label:'Docker Hub', url:'https://hub.docker.com/r/hallezwj/tunnel-deck'},
-    repo:'https://github.com/jerryzwj/tunnel-deck',
-    cmd:'docker run -d --name tunnel-deck -p 8787:8787 -v ./data:/data --add-host host.docker.internal:host-gateway hallezwj/tunnel-deck:latest'
+    name:'TunnelDeck', tagline:'两步把内网服务映射到公网 HTTPS，PC 与 Docker 都能跑', version:'v1.0.12', size:'exe 46.5 MB · 镜像单容器', sizeFixed:true,
+    platforms:['Windows 10/11 x64','Docker','托盘常驻'],
+    desc:'Cloudflare Tunnel 的可视化面板：填一个子域名 + 一个端口，自动生成 cloudflared 配置并热重启，顺手把 CNAME 建好。不用手写 config.yml。Windows 端是一个自带 exe 的绿色程序，双击即用、托盘常驻；NAS 端用 Docker 镜像。',
+    feats:['快速映射：子域名 + 端口两步搞定，自动生成配置并热重启','自动 DNS：找到所属 Zone，创建 / 更新 CNAME → 隧道 ID','多连接：一个面板管多条隧道（家里 NAS、公司测试机、临时演示）','状态可视：读 cloudflared /ready，另有实时日志','端口自检与端口扫描：扫到 http 服务直接一键映射','两种装法：Windows 用发布页的 exe（托盘常驻、可开机自启），NAS 用 Docker 镜像'],
+    downloads:[
+      {label:'下载 Windows 版', url:'https://github.com/jerryzwj/tunnel-deck/releases/download/v1.0.12/TunnelDeck.exe'},
+      {label:'Docker Hub', url:'https://hub.docker.com/r/hallezwj/tunnel-deck'}
+    ],
+    repo:'https://github.com/jerryzwj/tunnel-deck', changelog:'https://github.com/jerryzwj/tunnel-deck/releases',
+    cmd:'docker run -d --name tunnel-deck -p 8787:8787 -v ./data:/data --add-host host.docker.internal:host-gateway hallezwj/tunnel-deck:latest',
+    note:'Windows 版下载 exe 双击运行，托盘常驻；Docker 版用上面命令起容器，浏览器开 http://127.0.0.1:8787。'
   },
   {
     id:'tvjson', cat:'media', icon:'rss',
